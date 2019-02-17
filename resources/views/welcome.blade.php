@@ -2,6 +2,7 @@
 
 @section('content')
 	<h1>Üdvözöllek {{ session('name') }}!</h1>
+	<h3>Utolsó bejelentkezés {{ session('last_login') }}</h3>
 	<button onclick="window.location.href= '/logout'">Kijelentkezés</button>
 	<h2>Elérhető oldalak:</h2>
 	<ul>

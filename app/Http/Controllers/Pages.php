@@ -98,6 +98,9 @@ class Pages extends Controller
 
 	public function logout(){
 
+		$user = User::find(User::where([['name','=',session('name')]])->get()[0]->id);
+		$user->last_login = date('Y-m-d H:i:s');
+		$user->save();
 		session()->forget('name');
 
 		return redirect('/');
@@ -119,7 +122,7 @@ class Pages extends Controller
 			if (count($user)==1) {
 
 				session()->forget('failedLogins');
-				session(['name'=>$user[0]->name]);
+				session(['name'=>$user[0]->name,'last_login'=>$user[0]->last_login]);
 
 			} else {
 
